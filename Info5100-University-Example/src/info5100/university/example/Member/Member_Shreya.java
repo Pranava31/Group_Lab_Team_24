@@ -10,6 +10,6 @@ package info5100.university.example.Member;
  */
 public class Member_Shreya {
     public static void main(String[] args) {
-        System.out.println("Hello from Member 2 Shreya Darban!");
+        System.out.println("Hello from Member 2 Shreya!");
     }
 }
