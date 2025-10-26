@@ -1,27 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Business.Profiles;
 
 import Business.Person.Person;
 
 /**
- *
- * @author kal bugrara
+ * Represents a student profile containing personal, academic, and financial information.
  */
 public class StudentProfile extends Profile {
 
-    Person person;
-//    Transcript transcript;
-    //   EmploymentHistroy employmenthistory;
+    private Person person;
+    private StudentAccount studentAccount;
 
     public StudentProfile(Person p) {
         super(p);
-
-//        transcript = new Transcript(this);
-//        employmenthistory = new EmploymentHistroy();
+        this.person = p;
+        this.studentAccount = new StudentAccount();
     }
 
     @Override
@@ -33,4 +25,32 @@ public class StudentProfile extends Profile {
         return person.getPersonId().equals(id);
     }
 
+    public StudentAccount getStudentAccount() {
+        return studentAccount;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    // ======== Tuition / Finance Methods ========
+
+    /** Add a new tuition charge for this student. */
+    public void addTuitionCharge(double amount) {
+        if (studentAccount != null) {
+            studentAccount.addCharge(amount);
+        }
+    }
+
+    /** Pay off tuition partially or fully. */
+    public void payTuition(double amount) {
+        if (studentAccount != null) {
+            studentAccount.makePayment(amount);
+        }
+    }
+
+    /** Retrieve the current balance owed. */
+    public double getOutstandingBalance() {
+        return studentAccount != null ? studentAccount.getBalance() : 0.0;
+    }
 }
